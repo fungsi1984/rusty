@@ -9,7 +9,7 @@ cargo run --bin 1
 - 98, 
     - had function from_vec for better input and output
     - 98-1, modified input for take null input
-    - if you wondering how this works in c++ ./example/98.cpp
+- 1438-2, how to handle unwrap with some
 
 ### notes
 - example folder is unlinked folder for mini program compile it with

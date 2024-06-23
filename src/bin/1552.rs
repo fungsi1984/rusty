@@ -28,7 +28,7 @@ impl Solution {
         let mut position = position;
 
         // Sort the positions of balls.
-        position.sort();
+        position.sort_unstable();
 
         // Initial search space.
         let mut low = 1;
