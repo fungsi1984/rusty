@@ -12,6 +12,4 @@
     },
     "rust-analyzer.inlayHints.closingBraceHints.enable": false,
     "workbench.startupEditor": "none",
-    "vim.easymotion": true,
-    "vim.smartRelativeLine": true
 }
