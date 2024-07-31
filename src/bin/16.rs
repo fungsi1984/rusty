@@ -2,10 +2,45 @@ use std::cmp::Ordering;
 
 struct Solution;
 
+// impl Solution {
+//     pub fn three_sum_closest(mut nums: Vec<i32>, target: i32) -> i32 {
+//         // Sort the array
+//         nums.sort();
+
+//         // Initialize the answer with the sum of the first three numbers
+//         let mut ans = nums[0] + nums[1] + nums[2];
+
+//         for i in 0..nums.len() - 2 {
+//             if i > 0 && nums[i] == nums[i - 1] {
+//                 continue;
+//             }
+//             let mut l = i + 1;
+//             let mut r = nums.len() - 1;
+//             while l < r {
+//                 let sum = nums[i] + nums[l] + nums[r];
+//                 if sum == target {
+//                     return sum;
+//                 }
+//                 if (sum - target).abs() < (ans - target).abs() {
+//                     ans = sum;
+//                 }
+//                 match sum.cmp(&target) {
+//                     Ordering::Less => l += 1,
+//                     Ordering::Greater => r -= 1,
+//                     _ => {}
+//                 }
+//             }
+//         }
+
+//         ans
+//     }
+// }
+
 impl Solution {
-    pub fn three_sum_closest(mut nums: Vec<i32>, target: i32) -> i32 {
+    pub fn three_sum_closest(nums: Vec<i32>, target: i32) -> i32 {
         // Sort the array
-        nums.sort();
+        let mut nums = nums;
+        nums.sort_unstable();
 
         // Initialize the answer with the sum of the first three numbers
         let mut ans = nums[0] + nums[1] + nums[2];
@@ -35,6 +70,7 @@ impl Solution {
         ans
     }
 }
+
 
 // fn main() {
 //     // Define some test cases directly as Vec<i32>
@@ -79,3 +115,31 @@ fn main() {
         );
     }
 }
+
+
+// painfull c++
+
+// why even we use std::pair
+
+// int main() {
+//     std::vector<std::pair<std::vector<int>, int>> test_cases = {
+//         {{ -1, 2, 1, -4 }, 1},
+//         {{ 0, 2, 1, -3 }, 1},
+//         {{ -1, 2, 1, -4 }, 1},
+//         {{ 1, 1, 1, 0 }, -100},
+//         {{ 1, 1, 1, 0 }, 100},
+//         {{ -1, 0, 1, 1, 55 }, 3},
+//     };
+
+//     Solution sol;
+//     for (const auto& [nums, target] : test_cases) {
+//         int result = sol.threeSumClosest(nums, target);
+//         std::cout << "The sum closest to " << target << " for array ";
+//         for (int num : nums) {
+//             std::cout << num << " ";
+//         }
+//         std::cout << "is: " << result << std::endl;
+//     }
+
+//     return 0;
+// }
