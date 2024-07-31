@@ -5,6 +5,9 @@ cargo run --bin 1
 ```
 
 ### understanding this thing
+- 16, nice handling test case. 
+    - try not use clone(). and let see move works.
+    - using to_vec could get rid clone()
 - 94, using some "Option<Rc<RefCell<TreeNode>>>"
 - 98, 
     - had function from_vec for better input and output

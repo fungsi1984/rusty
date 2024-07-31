@@ -36,6 +36,28 @@ impl Solution {
     }
 }
 
+// fn main() {
+//     // Define some test cases directly as Vec<i32>
+//     let test_cases = vec![
+//         (vec![-1, 2, 1, -4], 1),
+//         (vec![0, 2, 1, -3], 1),
+//         (vec![-1, 2, 1, -4], 1),
+//         (vec![1, 1, 1, 0], -100),
+//         (vec![1, 1, 1, 0], 100),
+//         (vec![-1, 0, 1, 1, 55], 3),
+//     ];
+
+//     // Run the test cases
+//     for (nums, target) in test_cases {
+//         // Process nums by consuming it
+//         let result = Solution::three_sum_closest(nums.clone(), target);
+//         println!(
+//             "The sum closest to {} for array {:?} is: {}",
+//             target, nums, result
+//         );
+//     }
+// }
+
 fn main() {
     // Define some test cases directly as Vec<i32>
     let test_cases = vec![
@@ -49,8 +71,8 @@ fn main() {
 
     // Run the test cases
     for (nums, target) in test_cases {
-        // Process nums by consuming it
-        let result = Solution::three_sum_closest(nums.clone(), target);
+        // Process nums by borrowing it
+        let result = Solution::three_sum_closest(nums.to_vec(), target);
         println!(
             "The sum closest to {} for array {:?} is: {}",
             target, nums, result
