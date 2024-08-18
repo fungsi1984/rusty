@@ -5,7 +5,7 @@ cargo run --bin 1
 ```
 
 ### understanding this thing
-- 2, optimize for someone hate .unwrap()
+- 2-4, optimize for someone hate .unwrap()
 - 16, nice handling test case.
     - try not use clone(). and let see move works.
     - using to_vec could get rid clone()
