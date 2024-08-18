@@ -1,6 +1,6 @@
 // Definition for singly-linked list.
 #[derive(PartialEq, Eq, Clone, Debug)]
-pub struct ListNode {
+struct ListNode {
     pub val: i32,
     pub next: Option<Box<ListNode>>,
 }
@@ -96,6 +96,19 @@ fn main() {
     print_array(result); // Output: [7, 0, 8]
 }
 
+// fn array_to_list(arr: Vec<i32>) -> Option<Box<ListNode>> {
+//     let mut head = None;
+//     let mut cur = &mut head;
+
+//     for &val in arr.iter() {
+//         let node = Box::new(ListNode::new(val));
+//         *cur = Some(node);
+//         cur = &mut cur.as_mut().unwrap().next;
+//     }
+
+//     head
+// }
+
 fn array_to_list(arr: Vec<i32>) -> Option<Box<ListNode>> {
     let mut head = None;
     let mut cur = &mut head;
@@ -103,7 +116,9 @@ fn array_to_list(arr: Vec<i32>) -> Option<Box<ListNode>> {
     for &val in arr.iter() {
         let node = Box::new(ListNode::new(val));
         *cur = Some(node);
-        cur = &mut cur.as_mut().unwrap().next;
+        if let Some(ref mut inner_node) = cur {
+            cur = &mut inner_node.next;
+        }
     }
 
     head
