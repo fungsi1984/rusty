@@ -8,6 +8,8 @@ cargo run --bin 1
 - 2, optimize for someone hate .unwrap()
     - 2-4, get rid of unwrap() with Some()
     - 2-5, use pattern matching like match with Some()
+    - 2-7, using pointer dereference. pattern match and Some()
+    - 2-8, the fastest one
 - 16, nice handling test case.
     - try not use clone(). and let see move works.
     - using to_vec could get rid clone()
