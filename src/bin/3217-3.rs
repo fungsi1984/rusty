@@ -38,13 +38,33 @@ impl Solution {
 }
 
 // Function to convert an array into a linked list (ListNode)
+// fn array_to_linked_list(arr: &[i32]) -> Option<Box<ListNode>> {
+//     let mut head: Option<Box<ListNode>> = None;
+//     let mut current = &mut head;
+
+//     for &val in arr {
+//         *current = Some(Box::new(ListNode::new(val)));
+//         current = &mut current.as_mut().unwrap().next;
+//     }
+
+//     head
+// }
+
 fn array_to_linked_list(arr: &[i32]) -> Option<Box<ListNode>> {
     let mut head: Option<Box<ListNode>> = None;
     let mut current = &mut head;
 
     for &val in arr {
-        *current = Some(Box::new(ListNode::new(val)));
-        current = &mut current.as_mut().unwrap().next;
+        let new_node = Some(Box::new(ListNode::new(val)));
+        match current {
+            Some(ref mut node) => {
+                node.next = new_node;
+                current = &mut node.next;
+            }
+            None => {
+                *current = new_node;
+            }
+        }
     }
 
     head

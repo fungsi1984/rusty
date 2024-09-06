@@ -1,0 +1,22 @@
+// Folder-specific settings
+//
+// For a full list of overridable settings, and general information on folder-specific settings,
+// see the documentation: https://zed.dev/docs/configuring-zed#settings-files
+{
+  "git": {
+    // Control whether the git gutter is shown. May take 2 values:
+    // 1. Show the gutter
+    //      "git_gutter": "tracked_files"
+    // 2. Hide the gutter
+    //      "git_gutter": "hide"
+    "git_gutter": "tracked_files",
+    // Control whether the git blame information is shown inline,
+    // in the currently focused line.
+    "inline_blame": {
+      "enabled": true
+      // Sets a delay after which the inline blame information is shown.
+      // Delay is restarted with every cursor movement.
+      // "delay_ms": 600
+    }
+  }
+}

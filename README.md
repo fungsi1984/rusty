@@ -19,6 +19,8 @@ cargo run --bin 1
     - 98-1, modified input for take null input
 - 1438-2, how to handle unwrap with some
 - 2058, nice idea for using Some()
+- 3217,
+  - 3217-3, completely remove all unwrap
 
 ### compile
 - example folder is unlinked folder for mini program compile it with
