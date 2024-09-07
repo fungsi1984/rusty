@@ -17,6 +17,8 @@ cargo run --bin 1
 - 98,
     - had function from_vec for better input and output
     - 98-1, modified input for take null input
+- 1367,
+    - 1367-2, painful linked list in binary tree in rust
 - 1438-2, how to handle unwrap with some
 - 2058, nice idea for using Some()
 - 3217,
