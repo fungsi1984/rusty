@@ -21,6 +21,8 @@ cargo run --bin 1
     - 1367-2, painful linked list in binary tree in rust
 - 1438-2, how to handle unwrap with some
 - 2058, nice idea for using Some()
+- 2326, rust really wild in this questions, vector, linkedlist
+    - 2326-4, our first unsafe
 - 3217,
   - 3217-3, completely remove all unwrap
 
