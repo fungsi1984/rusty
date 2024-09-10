@@ -18,6 +18,9 @@ impl Solution {
     // You can use your own solution code here, as long as that code iterates
     // over the values that are to be assigned into the spiral.
     pub fn spiral_matrix(m: i32, n: i32, node: Option<Box<ListNode>>) -> Vec<Vec<i32>> {
+        // let n = n as usize;
+        // let m = m as usize;
+        // let mut spiral_matrix = vec![vec![-1; n]; m];
         let mut spiral_matrix = vec![vec![-1; n as usize]; m as usize];
 
         let (mut i, mut j, mut di, mut dj) = (0_i32, 0_i32, 0_i32, 1_i32);
