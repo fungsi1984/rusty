@@ -4,6 +4,11 @@
 cargo run --bin 1
 ```
 
+### dep for linker
+```
+sudo dnf install clang, lld
+```
+
 ### notes
 - 2, optimize for someone hate .unwrap()
     - 2-4, get rid of unwrap() with Some()
