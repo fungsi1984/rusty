@@ -4,9 +4,26 @@
 cargo run --bin 1
 ```
 
-### dep for linker
+### linker using lld
 ```
 sudo dnf install clang, lld
+
+
+- add config in .cargo/config.toml
+[target.x86_64-unknown-linux-gnu]
+rustflags = ["-C", "linker=clang", "-C", "link-arg=-fuse-ld=lld"]
+
+```
+
+### linker using mold
+```
+
+sudo dnf install mold
+
+- add config in .cargo/config.toml
+[target.x86_64-unknown-linux-gnu]
+linker = "/usr/bin/clang"
+rustflags = ["-C", "link-arg=--ld-path=/usr/bin/mold"]
 ```
 
 ### notes
