@@ -24,7 +24,13 @@ sudo dnf install mold
 [target.x86_64-unknown-linux-gnu]
 linker = "/usr/bin/clang"
 rustflags = ["-C", "link-arg=--ld-path=/usr/bin/mold"]
+
+- check binary
+readelf -p .comment target/debug/main
 ```
+
+
+
 
 ### notes
 - 2, optimize for someone hate .unwrap()
@@ -43,6 +49,9 @@ rustflags = ["-C", "link-arg=--ld-path=/usr/bin/mold"]
 - 1367,
     - 1367-2, painful linked list in binary tree in rust
 - 1438-2, how to handle unwrap with some
+- 1684
+    - 1684-2, our first lifetime
+    - 1684-3, if you hate to_string()
 - 2058, nice idea for using Some()
 - 2326, rust really wild in this questions, vector, linkedlist
     - 2326-4, our first unsafe
