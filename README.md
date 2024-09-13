@@ -47,6 +47,8 @@ readelf -p .comment target/debug/main
     - had function from_vec for better input and output
     - 98-1, modified input for take null input
 - 652, want see some troublesome "Vec<Option<Rc<RefCell<TreeNode>>>>"
+- 1028,
+    - 1028-2, the most hard i ever seen
 - 1367,
     - 1367-2, painful linked list in binary tree in rust
 - 1438-2, how to handle unwrap with some
