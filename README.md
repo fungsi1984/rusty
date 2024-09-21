@@ -39,6 +39,8 @@ readelf -p .comment target/debug/main
     - 2-7, using pointer dereference. pattern match and Some()
     - 2-8, the fastest one
     - 2-16, fast, short without unwrap
+    - 2-20, unsafe but clean enough
+    - 2-24, end of our journey
 - 16, nice handling test case.
     - try not use clone(). and let see move works.
     - using to_vec could get rid clone()
@@ -69,3 +71,4 @@ readelf -p .comment target/debug/main
 
 ### textbook that i use
 - Code Like a Pro in Rust, Brenden Matthews
+- Idomatic Rust, Brenden Matthews

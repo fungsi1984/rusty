@@ -1,5 +1,4 @@
-// #[derive(PartialEq, Eq, Clone, Debug)]
-#[derive(Clone)]
+#[derive(PartialEq, Eq, Clone, Debug)]
 struct ListNode {
     val: i32,
     next: Option<Box<ListNode>>,
@@ -12,7 +11,43 @@ impl ListNode {
     }
 }
 
-// Iterator for ListNode with borrowing and cloning
+impl Solution {
+    pub fn add_two_numbers(
+        mut list1: Option<Box<ListNode>>,
+        mut list2: Option<Box<ListNode>>,
+    ) -> Option<Box<ListNode>> {
+        let mut sentinel = Box::new(ListNode::new(i32::MAX));
+        Self::add_two_numbers_helper(list1, list2, 0, &mut sentinel);
+        sentinel.next
+    }
+
+    pub fn add_two_numbers_helper(
+        list1: Option<Box<ListNode>>,
+        list2: Option<Box<ListNode>>,
+        carry: i32,
+        sentinel: &mut Box<ListNode>,
+    ) {
+        match (list1, list2, carry) {
+            (None, None, 0) => return,
+            (l1, l2, c) => {
+                let (val1, next1) = match l1 {
+                    Some(node1) => (node1.val, node1.next),
+                    None => (0, None),
+                };
+                
+                let (val2, next2) = match l2 {
+                    Some(node2) => (node2.val, node2.next),
+                    None => (0, None),
+                };
+
+                let sum = val1 + val2 + c;
+                let next = sentinel.next.insert(Box::new(ListNode::new(sum % 10)));
+                Self::add_two_numbers_helper(next1, next2, sum / 10, next)
+            }
+        }
+    }
+}
+
 struct ListNodeIterator {
     cur_iter: Option<Box<ListNode>>,
 }
@@ -23,70 +58,36 @@ impl ListNodeIterator {
     }
 }
 
-// Implement Iterator for ListNodeIterator
 impl Iterator for ListNodeIterator {
     type Item = i32;
 
     fn next(&mut self) -> Option<Self::Item> {
-        // If cur_iter is None, return None
         match &self.cur_iter {
             Some(node) => {
-                // Clone the current node pointer and move to the next
                 let val = node.val;
                 self.cur_iter = node.next.clone();
                 Some(val)
             }
-            None => None, // No more items
+            None => None,
         }
     }
 }
 
-impl Solution {
-    fn add_two_numbers(
-        l1: Option<Box<ListNode>>,
-        l2: Option<Box<ListNode>>,
-    ) -> Option<Box<ListNode>> {
-        let mut l1 = l1;
-        let mut l2 = l2;
-        let mut carry = 0;
-
-        let mut head = Box::new(ListNode::new(0));
-        let mut cur = &mut head;
-
-        while l1.is_some() || l2.is_some() || carry > 0 {
-            let mut sum = carry;
-            if let Some(node) = l1 {
-                sum += node.val;
-                l1 = node.next;
-            }
-            if let Some(node) = l2 {
-                sum += node.val;
-                l2 = node.next;
-            }
-
-            carry = sum / 10;
-            cur.next = Some(Box::new(ListNode::new(sum % 10)));
-            // cur = cur.next.as_mut().unwrap();
-            // Safely move `cur` to cur.next
-            if let Some(ref mut next) = cur.next {
-                cur = next;
-            }
-        }
-
-        head.next
-    }
-}
 
 fn array_to_list(arr: Vec<i32>) -> Option<Box<ListNode>> {
     let mut head = None;
-    let mut cur = &mut head;
+    let mut cur: *mut Option<Box<ListNode>> = &mut head;
 
     for &val in arr.iter() {
         let node = Box::new(ListNode::new(val));
-        *cur = Some(node);
-        // cur = &mut cur.as_mut().unwrap().next;
-        if let Some(ref mut next) = cur {
-            cur = &mut next.next;
+
+        unsafe {
+            // Using raw pointer dereference
+            *cur = Some(node);
+
+            if let Some(ref mut next) = *cur {
+                cur = &mut next.next as *mut _; // Move `cur` to point to the next node
+            }
         }
     }
 
@@ -114,7 +115,10 @@ fn print_array(arr: Vec<i32>) {
     }
     println!("]");
 }
+
+
 struct Solution;
+
 fn main() {
     let l1 = vec![2, 4, 3];
     let l2 = vec![5, 6, 4];
