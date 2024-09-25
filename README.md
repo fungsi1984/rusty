@@ -40,7 +40,7 @@ readelf -p .comment target/debug/main
     - 2-8, the fastest one
     - 2-16, fast, short without unwrap
     - 2-20, unsafe but clean enough
-    - 2-24, end of our journey
+    - 2-24, end of our journey. it is fast, with error handling without unwrap
 - 16, nice handling test case.
     - try not use clone(). and let see move works.
     - using to_vec could get rid clone()
@@ -60,6 +60,7 @@ readelf -p .comment target/debug/main
 - 2058, nice idea for using Some()
 - 2326, rust really wild in this questions, vector, linkedlist
     - 2326-4, our first unsafe
+- 2416, it is using trie
 - 3217,
   - 3217-3, completely remove all unwrap
 
