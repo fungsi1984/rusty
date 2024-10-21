@@ -57,6 +57,8 @@ readelf -p .comment target/debug/main
 - 1405,
     -1405-3, fun with pattern matching
 - 1438-2, how to handle unwrap with some
+- 1545, bit manip 1 << (n - 1)
+-1593, better editorial
 - 1684
     - 1684-2, our first lifetime
     - 1684-3, if you hate to_string()
