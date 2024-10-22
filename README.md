@@ -33,6 +33,8 @@ readelf -p .comment target/debug/main
 
 
 ### notes
+- 1,
+    1-10, how handling index as i32 not usize
 - 2, optimize for someone hate .unwrap()
     - 2-4, get rid of unwrap() with Some()
     - 2-5, use pattern matching like match with Some()
@@ -66,14 +68,9 @@ readelf -p .comment target/debug/main
 - 2326, rust really wild in this questions, vector, linkedlist
     - 2326-4, our first unsafe
 - 2416, it is using trie
+- 2583, tree
 - 3217,
   - 3217-3, completely remove all unwrap
-
-### compile
-- example folder is unlinked folder for mini program compile it with
-    ```
-        rustc factorial.rs
-    ```
 
 ### textbook that i use
 - Code Like a Pro in Rust, Brenden Matthews
