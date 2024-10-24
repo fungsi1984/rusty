@@ -5,15 +5,15 @@ use std::rc::Rc;
 type Node = Option<Rc<RefCell<TreeNode>>>;
 
 #[derive(Debug, PartialEq, Eq)]
-pub struct TreeNode {
-    pub val: i32,
-    pub left: Node,
-    pub right: Node,
+struct TreeNode {
+    val: i32,
+    left: Node,
+    right: Node,
 }
 
 impl TreeNode {
     #[inline]
-    pub fn new(val: i32) -> Self {
+    fn new(val: i32) -> Self {
         TreeNode {
             val,
             left: None,
@@ -71,20 +71,6 @@ impl Solution {
         root
     }
 
-    // Function to parse input string like "root = [5,4,9,1,10,null,7]"
-    fn parse_input(input: &str) -> Vec<Option<i32>> {
-        input
-            .trim_start_matches("root = [")
-            .trim_end_matches(']')
-            .split(',')
-            .map(|x| match x.trim() {
-                "null" => None,
-                val => Some(val.parse::<i32>().unwrap()),
-            })
-            .collect()
-    }
-
-    // Converts vector of Option<i32> into binary tree
     fn vec_to_tree_node(vec: Vec<Option<i32>>) -> Node {
         if vec.is_empty() || vec[0].is_none() {
             return None;
@@ -97,7 +83,6 @@ impl Solution {
         let mut i = 1;
         while i < vec.len() {
             if let Some(current_node) = node_queue.pop_front() {
-                // Left child
                 if i < vec.len() {
                     if let Some(val) = vec[i] {
                         let left_node = Rc::new(RefCell::new(TreeNode::new(val)));
@@ -107,7 +92,6 @@ impl Solution {
                     i += 1;
                 }
 
-                // Right child
                 if i < vec.len() {
                     if let Some(val) = vec[i] {
                         let right_node = Rc::new(RefCell::new(TreeNode::new(val)));
@@ -122,7 +106,6 @@ impl Solution {
         Some(root)
     }
 
-    // Converts a binary tree back into a vector representation
     fn tree_node_to_vec(root: Node) -> Vec<Option<i32>> {
         let mut result = Vec::new();
         let mut node_queue = VecDeque::new();
@@ -147,41 +130,7 @@ impl Solution {
             }
         }
 
-        // Trim the trailing None values
         while result.last() == Some(&None) {
-            result.pop();
-        }
-
-        result
-    }
-
-    // Converts a binary tree back into a vector representation (with proper output format)
-    fn tree_node_to_vec_pretty(root: Node) -> Vec<String> {
-        let mut result = Vec::new();
-        let mut node_queue = VecDeque::new();
-
-        if let Some(root_node) = root {
-            node_queue.push_back(root_node);
-        }
-
-        while !node_queue.is_empty() {
-            if let Some(current_node) = node_queue.pop_front() {
-                result.push(current_node.borrow().val.to_string());
-
-                let left = current_node.borrow().left.clone();
-                let right = current_node.borrow().right.clone();
-
-                if left.is_some() || right.is_some() {
-                    node_queue.push_back(left.unwrap_or_else(|| Rc::new(RefCell::new(TreeNode::new(0)))));
-                    node_queue.push_back(right.unwrap_or_else(|| Rc::new(RefCell::new(TreeNode::new(0)))));
-                }
-            } else {
-                result.push("null".to_string());
-            }
-        }
-
-        // Trim the trailing "null" values for cleaner output
-        while result.last() == Some(&"null".to_string()) {
             result.pop();
         }
 
@@ -190,23 +139,19 @@ impl Solution {
 }
 
 fn main() {
-    // Define the input values with None representing nulls
-    let input_values = vec![5, 4, 9, 1, 10, 0, 7]; // Using 0 as a placeholder for `None`
-
-    // Convert input into Vec<Option<i32>> with a for loop
+    let input_values = vec![5, 4, 9, 1, 10, 0, 7];
     let root: Vec<Option<i32>> = input_values
         .into_iter()
-        .map(|x| if x == 0 { None } else { Some(x) }) // Replace 0 with None
+        .map(|x| if x == 0 { None } else { Some(x) })
         .collect();
 
-    // Convert the vector into a binary tree
     let root_node = Solution::vec_to_tree_node(root);
-
-    // Replace the values in the tree based on the algorithm
     let modified_root = Solution::replace_value_in_tree(root_node);
+    let output = Solution::tree_node_to_vec(modified_root);
 
-    // Convert the modified tree back to a vector for output
-    let output = Solution::tree_node_to_vec_pretty(modified_root);
-    // Print the output
-    println!("Output: {:?}", output);
+    let output: Vec<String> = output
+        .into_iter()
+        .map(|x| x.map_or_else(|| "null".to_string(), |i| i.to_string()))
+        .collect();
+    println!("Output: [{}]", output.join(", "));
 }
