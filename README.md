@@ -52,6 +52,8 @@ readelf -p .comment target/debug/main
     - 98-1, modified input for take null input
 - 652, want see some troublesome "Vec<Option<Rc<RefCell<TreeNode>>>>"
 - 731, nice way to use vector pair
+- 951, 
+    - 951-2, it had clean input vector without using Some()
 - 1028,
     - 1028-2, the most hard i ever seen
 - 1367,
@@ -69,6 +71,8 @@ readelf -p .comment target/debug/main
     - 2326-4, our first unsafe
 - 2416, it is using trie
 - 2583, tree
+- 2641, still troublesome
+    - 2641-10, peak of parsing input output tree without Some() and make it clean
 - 3217,
   - 3217-3, completely remove all unwrap
 
