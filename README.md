@@ -70,6 +70,7 @@ readelf -p .comment target/debug/main
 - 2326, rust really wild in this questions, vector, linkedlist
     - 2326-4, our first unsafe
 - 2416, it is using trie
+- 2458, hard definitely painfully hard
 - 2583, tree
 - 2641, still troublesome
     - 2641-10, peak of parsing input output tree without Some() and make it clean
