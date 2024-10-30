@@ -50,10 +50,7 @@ impl Solution {
         println!("]");
     }
 
-    fn add_two_numbers(
-        l1: Option<Box<ListNode>>,
-        l2: Option<Box<ListNode>>,
-    ) -> Option<Box<ListNode>> {
+    fn add_two_numbers(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
         let mut l1 = l1;
         let mut l2 = l2;
         let mut carry = 0;

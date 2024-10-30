@@ -1,1 +1,4 @@
 /target
+.idea/modules.xml
+.idea/rusty.iml
+.idea/vcs.xml
