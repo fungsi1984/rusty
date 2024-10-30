@@ -62,6 +62,7 @@ readelf -p .comment target/debug/main
 - 2326, rust really wild in this questions, vector, linkedlist
     - 2326-4, our first unsafe
 - 2416, it is using trie
+- 2491, really nice how key value works in different language
 - 3217,
   - 3217-3, completely remove all unwrap
 
