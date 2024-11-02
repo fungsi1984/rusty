@@ -35,6 +35,7 @@ readelf -p .comment target/debug/main
 ### notes
 - 1,
     1-10, how handling index as i32 not usize
+    1-dod, add data oriented design
 - 2, optimize for someone hate .unwrap()
     - 2-4, get rid of unwrap() with Some()
     - 2-5, use pattern matching like match with Some()
