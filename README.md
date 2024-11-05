@@ -35,6 +35,7 @@ readelf -p .comment target/debug/main
 ### notes
 - 1,
     1-10, how handling index as i32 not usize
+    1-dod, add data oriented design
 - 2, optimize for someone hate .unwrap()
     - 2-4, get rid of unwrap() with Some()
     - 2-5, use pattern matching like match with Some()
@@ -44,6 +45,7 @@ readelf -p .comment target/debug/main
     - 2-20, unsafe but clean enough
     - 2-24, end of our journey. it is fast, with error handling without unwrap
     - 2-31, definitely end of our journey
+    - 2-28, it is using data oriented signature, without unwrap and lot of way to handle 
 - 16, nice handling test case.
     - try not use clone(). and let see move works.
     - using to_vec could get rid clone()
@@ -74,6 +76,7 @@ readelf -p .comment target/debug/main
 - 2326, rust really wild in this questions, vector, linkedlist
     - 2326-4, our first unsafe
 - 2416, it is using trie
+- 2491, really nice how key value works in different language
 - 2458, hard definitely painfully hard
     - 2458-3, handling unwrap using .map(Some)
     - 2458-7. our first STACK OVERFLOW

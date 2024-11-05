@@ -11,5 +11,5 @@
         }
     },
     "rust-analyzer.inlayHints.closingBraceHints.enable": false,
-    "workbench.startupEditor": "none",
+    "workbench.startupEditor": "none"
 }
