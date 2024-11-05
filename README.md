@@ -43,6 +43,7 @@ readelf -p .comment target/debug/main
     - 2-16, fast, short without unwrap
     - 2-20, unsafe but clean enough
     - 2-24, end of our journey. it is fast, with error handling without unwrap
+    - 2-31, definitely end of our journey
 - 16, nice handling test case.
     - try not use clone(). and let see move works.
     - using to_vec could get rid clone()
@@ -50,8 +51,10 @@ readelf -p .comment target/debug/main
 - 98,
     - had function from_vec for better input and output
     - 98-1, modified input for take null input
+- 427, even it didn't had rust input so we use c++
 - 652, want see some troublesome "Vec<Option<Rc<RefCell<TreeNode>>>>"
 - 731, nice way to use vector pair
+- 895, nice struct
 - 951, 
     - 951-2, it had clean input vector without using Some()
 - 1028,
@@ -66,11 +69,14 @@ readelf -p .comment target/debug/main
 - 1684
     - 1684-2, our first lifetime
     - 1684-3, if you hate to_string()
+- 1932, it takes a lot of time for solve this things
 - 2058, nice idea for using Some()
 - 2326, rust really wild in this questions, vector, linkedlist
     - 2326-4, our first unsafe
 - 2416, it is using trie
 - 2458, hard definitely painfully hard
+    - 2458-3, handling unwrap using .map(Some)
+    - 2458-7. our first STACK OVERFLOW
 - 2583, tree
 - 2641, still troublesome
     - 2641-10, peak of parsing input output tree without Some() and make it clean

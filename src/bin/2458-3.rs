@@ -12,7 +12,7 @@ struct TreeNode {
 
 impl TreeNode {
     #[inline]
-    pub fn new(val: i32) -> Self {
+    fn new(val: i32) -> Self {
         TreeNode {
             val,
             left: None,
@@ -115,36 +115,38 @@ impl Solution {
     }
 }
 
-// Convert Vec<Option<i32>> into a binary tree (level-order)
 fn vec_to_tree_node(data: Vec<Option<i32>>) -> Option<Rc<RefCell<TreeNode>>> {
-    if data.is_empty() || data[0].is_none() {
-        return None;
+    let root = data[0].map(|val| Rc::new(RefCell::new(TreeNode::new(val))));
+    let mut queue = VecDeque::new();
+
+    if let Some(root_node) = root.clone() {
+        queue.push_back(root_node);
     }
 
-    let root = Rc::new(RefCell::new(TreeNode::new(data[0].unwrap())));
-    let mut queue = VecDeque::new();
-    queue.push_back(root.clone());
     let mut i = 1;
-
     while i < data.len() {
         if let Some(current) = queue.pop_front() {
-            if i < data.len() && data[i].is_some() {
-                let left_node = Rc::new(RefCell::new(TreeNode::new(data[i].unwrap())));
-                current.borrow_mut().left = Some(left_node.clone());
-                queue.push_back(left_node);
+            // Left child
+            if i < data.len() {
+                current.borrow_mut().left = data[i].map(|val| Rc::new(RefCell::new(TreeNode::new(val))));
+                if let Some(left_child) = &current.borrow().left {
+                    queue.push_back(left_child.clone());
+                }
             }
             i += 1;
 
-            if i < data.len() && data[i].is_some() {
-                let right_node = Rc::new(RefCell::new(TreeNode::new(data[i].unwrap())));
-                current.borrow_mut().right = Some(right_node.clone());
-                queue.push_back(right_node);
+            // Right child
+            if i < data.len() {
+                current.borrow_mut().right = data[i].map(|val| Rc::new(RefCell::new(TreeNode::new(val))));
+                if let Some(right_child) = &current.borrow().right {
+                    queue.push_back(right_child.clone());
+                }
             }
             i += 1;
         }
     }
 
-    Some(root)
+    root
 }
 
 // Convert binary tree into Vec<Option<i32>> (level-order)

@@ -13,7 +13,6 @@ impl ListNode {
 }
 
 struct Solution;
-
 impl Solution {
     fn add_two_numbers(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
         let mut p = l1;
@@ -22,38 +21,39 @@ impl Solution {
         let mut dummy_head = Box::new(ListNode::new(0));
         let mut current = &mut dummy_head;
 
-        while p.is_some() || q.is_some() {
-            let x = p.as_ref().map_or(0, |node| node.val);
-            let y = q.as_ref().map_or(0, |node| node.val);
+        loop {
+            let (x, next_p) = match p {
+                Some(node) => (node.val, node.next),
+                None => (0, None),
+            };
+
+            let (y, next_q) = match q {
+                Some(node) => (node.val, node.next),
+                None => (0, None),
+            };
+
             let sum = x + y + carry;
             carry = sum / 10;
 
             current.next = Some(Box::new(ListNode::new(sum % 10)));
-            current = current.next.as_mut().unwrap();
+            // current = current.next.as_mut().unwrap();
+            if let Some(ref mut next_node) = current.next {
+                current = next_node;
+            }
 
-            p = if p.is_some() { p.unwrap().next } else { None };
-            q = if q.is_some() { q.unwrap().next } else { None };
-        }
+            p = next_p;
+            q = next_q;
 
-        if carry > 0 {
-            current.next = Some(Box::new(ListNode::new(carry)));
+            // Break when there are no more nodes and no carry
+            if p.is_none() && q.is_none() && carry == 0 {
+                break;
+            }
+            
         }
 
         dummy_head.next
     }
 }
-
-// Helper function to convert a vector to a linked list
-// fn from_vec(vec: Vec<i32>) -> Option<Box<ListNode>> {
-//     let mut head = None;
-//     let mut current = &mut head;
-//     for &val in vec.iter().rev() {
-//         *current = Some(Box::new(ListNode::new(val)));
-//         current = &mut current.as_mut().unwrap().next;
-
-//     }
-//     head
-// }
 
 fn from_vec(vec: Vec<i32>) -> Option<Box<ListNode>> {
     let mut head = None;

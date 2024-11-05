@@ -23,16 +23,24 @@ impl Solution {
         let mut current = &mut dummy_head;
 
         while p.is_some() || q.is_some() {
-            let x = p.as_ref().map_or(0, |node| node.val);
+            // let x = p.as_ref().map_or(0, |node| node.val);
+            let x = if let Some(node) = &p { node.val } else { 0 };
+
             let y = q.as_ref().map_or(0, |node| node.val);
             let sum = x + y + carry;
             carry = sum / 10;
 
+            // Create the new node and set `current.next`
             current.next = Some(Box::new(ListNode::new(sum % 10)));
-            current = current.next.as_mut().unwrap();
 
-            p = if p.is_some() { p.unwrap().next } else { None };
-            q = if q.is_some() { q.unwrap().next } else { None };
+            // Move `current` to `current.next` safely
+            if let Some(ref mut next_node) = current.next {
+                current = next_node;
+            }
+
+            // Update `p` and `q` to their respective next nodes
+            p = p.and_then(|node| node.next);
+            q = q.and_then(|node| node.next);
         }
 
         if carry > 0 {
@@ -42,18 +50,6 @@ impl Solution {
         dummy_head.next
     }
 }
-
-// Helper function to convert a vector to a linked list
-// fn from_vec(vec: Vec<i32>) -> Option<Box<ListNode>> {
-//     let mut head = None;
-//     let mut current = &mut head;
-//     for &val in vec.iter().rev() {
-//         *current = Some(Box::new(ListNode::new(val)));
-//         current = &mut current.as_mut().unwrap().next;
-
-//     }
-//     head
-// }
 
 fn from_vec(vec: Vec<i32>) -> Option<Box<ListNode>> {
     let mut head = None;
