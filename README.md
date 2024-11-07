@@ -84,6 +84,7 @@ readelf -p .comment target/debug/main
 - 2641, still troublesome
     - 2641-10, peak of parsing input output tree without Some() and make it clean
     - 2641-11, end of our journey
+- 2914, how to use for loop in different ways
 - 3217,
   - 3217-3, completely remove all unwrap
 
