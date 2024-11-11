@@ -81,6 +81,7 @@ readelf -p .comment target/debug/main
     - 2458-3, handling unwrap using .map(Some)
     - 2458-7. our first STACK OVERFLOW
 - 2583, tree
+- 2601, first |&&p| it means reference to reference 
 - 2641, still troublesome
     - 2641-10, peak of parsing input output tree without Some() and make it clean
     - 2641-11, end of our journey
