@@ -46,6 +46,7 @@ readelf -p .comment target/debug/main
     - 2-24, end of our journey. it is fast, with error handling without unwrap
     - 2-31, definitely end of our journey
     - 2-28, it is using data oriented signature, without unwrap and lot of way to handle 
+    - 2-33, handling as_mut
 - 16, nice handling test case.
     - try not use clone(). and let see move works.
     - using to_vec could get rid clone()
