@@ -22,6 +22,7 @@ impl Solution {
     }
 }
 
+struct Solution;
 fn main() {
     let n = 6;
     let quantities = vec![11, 6, 7];
