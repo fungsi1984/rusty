@@ -1,8 +1,8 @@
 // Definition for singly-linked list.
 #[derive(PartialEq, Eq, Clone, Debug)]
-pub struct ListNode {
-    pub val: i32,
-    pub next: Option<Box<ListNode>>,
+struct ListNode {
+    val: i32,
+    next: Option<Box<ListNode>>,
 }
 
 impl ListNode {
@@ -12,11 +12,13 @@ impl ListNode {
     }
 }
 
+type BoxNode = Option<Box<ListNode>>;
+
 impl Solution {
     pub fn add_two_numbers(
-        l1: Option<Box<ListNode>>,
-        l2: Option<Box<ListNode>>,
-    ) -> Option<Box<ListNode>> {
+        l1: BoxNode,
+        l2: BoxNode,
+    ) -> BoxNode {
         if l1 == None && l2 == None {
             return None;
         }
@@ -42,16 +44,14 @@ impl Solution {
         ret
     }
 }
+
 fn set(node: &mut Option<Box<ListNode>>, val: i32) {
     match node {
         Some(v) => {
             set(&mut v.next, val);
         }
         None => {
-            *node = Some(Box::new(ListNode {
-                val: val,
-                next: None,
-            }));
+            *node = Some(Box::new(ListNode { val, next: None }));
         }
     }
 }
