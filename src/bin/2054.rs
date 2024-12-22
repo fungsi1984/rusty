@@ -1,4 +1,3 @@
-#[derive(Debug)]
 struct Event {
     time: i32,
     value: i32,
@@ -17,9 +16,9 @@ impl Event {
 
 struct Solution;
 
+
 impl Solution {
     pub fn max_two_events(events: Vec<Vec<i32>>) -> i32 {
-
 
         let mut ans = 0;
         let mut max_value = 0;
@@ -60,4 +59,4 @@ fn main() {
         vec![2, 4, 3],
     ];
     println!("{}", Solution::max_two_events(events)); // Output should be 4
-}
+
