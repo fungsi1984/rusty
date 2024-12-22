@@ -11,13 +11,13 @@
             "cargo": {
                 "args": [
                     "build",
-                    "--bin=1-2",
+                    "--bin=2415-2",
                     "--package=rusty"
                 ],
-                "filter": {
-                    "name": "1",
-                    "kind": "bin"
-                }
+                // "filter": {
+                //     "name": "1",
+                //     "kind": "bin"
+                // }
             },
             "args": [],
             "cwd": "${workspaceFolder}"
