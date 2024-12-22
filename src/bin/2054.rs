@@ -14,6 +14,8 @@ impl Event {
     }
 }
 
+struct Solution;
+
 
 impl Solution {
     pub fn max_two_events(events: Vec<Vec<i32>>) -> i32 {
@@ -50,7 +52,6 @@ impl Solution {
     }
 }
 
-struct Solution;
 fn main() {
     let events = vec![
         vec![1, 3, 2],
@@ -58,4 +59,4 @@ fn main() {
         vec![2, 4, 3],
     ];
     println!("{}", Solution::max_two_events(events)); // Output should be 4
-}
+
