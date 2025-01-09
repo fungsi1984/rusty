@@ -60,3 +60,4 @@ fn main() {
     ];
     println!("{}", Solution::max_two_events(events)); // Output should be 4
 
+}
