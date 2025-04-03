@@ -11,13 +11,9 @@
             "cargo": {
                 "args": [
                     "build",
-                    "--bin=2415-2",
+                    "--bin=2-46",
                     "--package=rusty"
                 ],
-                // "filter": {
-                //     "name": "1",
-                //     "kind": "bin"
-                // }
             },
             "args": [],
             "cwd": "${workspaceFolder}"
